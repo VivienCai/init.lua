@@ -28,6 +28,15 @@ map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
+
+-- Disable arrow keys in all modes
+for _, mode in ipairs({ 'n', 'i', 'v', 'c' }) do
+  for _, key in ipairs({ '<Up>', '<Down>', '<Left>', '<Right>' }) do
+    vim.keymap.set(mode, key, '<nop>')
+  end
+end
+
+
 -- Clear search on escape
 map({ "i", "n", "s" }, "<esc>", function()
   vim.cmd("noh")
